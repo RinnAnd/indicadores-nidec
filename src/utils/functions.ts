@@ -1,9 +1,16 @@
-import { asyncFunc, Setter } from "../types";
+import { asyncFunc, HourlyData, Setter, StateType } from "../types";
 
-export async function Fetcher<T>(fn: asyncFunc<T>, setter: Setter<T>) {
+export async function Fetcher(
+  fn: asyncFunc,
+  dailySetter: Setter<StateType>,
+  monthlySetter: Setter<StateType>,
+  hourlySetter: Setter<HourlyData[]>
+) {
   try {
     const data = await fn();
-    setter(data);
+    dailySetter(data.daily);
+    monthlySetter(data.monthly);
+    hourlySetter(data.hourly);
   } catch (error) {
     console.error("Error fetching data:", error);
   }

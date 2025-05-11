@@ -1,26 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import useCurrentTime from "../hooks/useCurrentTime";
-import Databox from "./Databox";
 import { StateType } from "../types";
-import { Fetcher } from "../utils/functions";
-import useValueSetter from "../hooks/useValueSetter";
+import Databox from "./Databox";
 
-const Dataline: FC = () => {
-  const { currentDate, currentTime } = useCurrentTime()
-  const { Daily, Monthly } = useValueSetter()
-  const [daily, setDaily] = useState<StateType>({
-    rate: null,
-    volume: null,
-  })
-  const [monthly, setMonthly] = useState<StateType>({
-    rate: null,
-    volume: null,
-  })
-
-  useEffect(() => {
-    Fetcher<StateType>(Daily, setDaily)
-    Fetcher<StateType>(Monthly, setMonthly)
-  }, []);
+const Dataline: FC<{ daily: StateType; monthly: StateType }> = ({
+  daily,
+  monthly,
+}) => {
+  const { currentDate, currentTime } = useCurrentTime();
 
   return (
     <div className="w-full flex p-2 mt-0.5 justify-center gap-5">

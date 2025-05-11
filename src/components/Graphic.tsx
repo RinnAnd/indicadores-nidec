@@ -7,12 +7,10 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import annotationPlugin from 'chartjs-plugin-annotation';
-import { FC, useEffect, useState } from "react";
+import annotationPlugin from "chartjs-plugin-annotation";
+import { FC } from "react";
 import { Bar } from "react-chartjs-2";
-import useValueSetter from "../hooks/useValueSetter";
 import { HourlyData } from "../types";
-import { Fetcher } from "../utils/functions";
 
 ChartJS.register(
   CategoryScale,
@@ -21,7 +19,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  annotationPlugin,
+  annotationPlugin
 );
 
 const hours = Array.from(
@@ -31,14 +29,7 @@ const hours = Array.from(
 
 const GOAL_VALUE = 350;
 
-const Graphic: FC = () => {
-  const [hourlyData, setHourlyData] = useState<HourlyData[]>([]);
-  const { Hourly } = useValueSetter();
-  
-  useEffect(() => {
-    Fetcher<HourlyData[]>(Hourly, setHourlyData);
-  }, []);
-
+const Graphic: FC<{ hourlyData: HourlyData[] }> = ({ hourlyData }) => {
   const data = {
     labels: hours,
     datasets: [
@@ -60,28 +51,28 @@ const Graphic: FC = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: "top" as const,
       },
       title: {
         display: true,
-        text: '24-Hour Data',
+        text: "24-Hour Data",
       },
       annotation: {
         annotations: [
           {
-            type: 'line' as const,
+            type: "line" as const,
             yMin: GOAL_VALUE,
             yMax: GOAL_VALUE,
-            borderColor: 'rgb(255, 0, 0)',
+            borderColor: "rgb(255, 0, 0)",
             borderWidth: 4,
             label: {
               display: true,
               content: `Meta: ${GOAL_VALUE}`,
-              position: 'end' as const
-            }
-          }
-        ]
-      }
+              position: "end" as const,
+            },
+          },
+        ],
+      },
     },
     scales: {
       y: {

@@ -14,6 +14,16 @@ export type StateType = {
   volume: Meassurement | null;
 };
 
-export type asyncFunc<T> = () => Promise<T>
+export type asyncFunc = () => Promise<{
+  daily: {
+    rate: any;
+    volume: any;
+  };
+  monthly: {
+    rate: any;
+    volume: any;
+  };
+  hourly: any;
+}>;
 
-export type Setter<T> = (value: React.SetStateAction<T>) => void
+export type Setter<T> = (value: React.SetStateAction<T>) => void;
