@@ -10,7 +10,7 @@ const Dataline: FC<{ daily: StateType; monthly: StateType }> = ({
   const { currentDate, currentTime } = useCurrentTime();
 
   return (
-    <div className="w-full flex p-2 mt-0.5 justify-center gap-5">
+    <div className="w-full flex p-2 mt-0.5 justify-around gap-5">
       <div>
         <Databox
           title="Día & Hora"

@@ -30,7 +30,7 @@ function App() {
     <div className="h-screen w-full font-sans">
       <Header />
       <Dataline daily={daily} monthly={monthly} />
-      <Graphic hourlyData={hourly} />
+      <Graphic hourlyData={hourly} goal={daily.rate?.meta} />
     </div>
   );
 }

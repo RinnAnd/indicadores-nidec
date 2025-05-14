@@ -24,12 +24,10 @@ ChartJS.register(
 
 const hours = Array.from(
   { length: 24 },
-  (_, i) => i.toString().padStart(2, "0") + ":00"
+  (_, i) => i.toString().padStart(2, "0")
 );
 
-const GOAL_VALUE = 350;
-
-const Graphic: FC<{ hourlyData: HourlyData[] }> = ({ hourlyData }) => {
+const Graphic: FC<{ hourlyData: HourlyData[], goal?: number }> = ({ hourlyData, goal }) => {
   const data = {
     labels: hours,
     datasets: [
@@ -61,13 +59,13 @@ const Graphic: FC<{ hourlyData: HourlyData[] }> = ({ hourlyData }) => {
         annotations: [
           {
             type: "line" as const,
-            yMin: GOAL_VALUE,
-            yMax: GOAL_VALUE,
+            yMin: goal,
+            yMax: goal,
             borderColor: "rgb(255, 0, 0)",
             borderWidth: 4,
             label: {
               display: true,
-              content: `Meta: ${GOAL_VALUE}`,
+              content: `Meta: ${goal}`,
               position: "end" as const,
             },
           },
@@ -77,7 +75,19 @@ const Graphic: FC<{ hourlyData: HourlyData[] }> = ({ hourlyData }) => {
     scales: {
       y: {
         beginAtZero: true,
+        ticks: {
+          font: {
+            size: 20
+          }
+        }
       },
+      x: {
+        ticks: {
+          font: {
+            size: 20
+          }
+        }
+      }
     },
   };
 

@@ -16,8 +16,8 @@ const Databox: FC<DataboxProps> = ({
   return (
     <div
       className={`${
-        hierarchy == "main" ? "w-52" : "w-32"
-      } flex flex-col rounded-md h-full border p-7 text-xl font-extrabold border-slate-200`}
+        hierarchy == "main" ? "w-[15rem]" : "w-[11rem]"
+      } flex flex-col rounded-md h-[11rem] border p-7 text-2xl font-extrabold border-slate-200`}
     >
       <div className="text-gray-400 w-full">
         {title}
