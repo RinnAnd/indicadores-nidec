@@ -12,16 +12,12 @@ function App() {
     rate: null,
     volume: null,
   });
-  const [monthly, setMonthly] = useState<StateType>({
-    rate: null,
-    volume: null,
-  });
   const [hourly, setHourly] = useState<HourlyData[]>([]);
 
   useEffect(() => {
     new Promise((resolve) => {
       setInterval(() => {
-        resolve(Fetcher(parseData, setDaily, setMonthly, setHourly));
+        resolve(Fetcher(parseData, setDaily, setHourly));
       }, 5000);
     });
   }, []);
