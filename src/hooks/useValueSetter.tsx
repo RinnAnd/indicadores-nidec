@@ -1,7 +1,7 @@
 import { Service } from "../service/service";
 
 const useValueSetter = () => {
-  const service = new Service("http://10.13.225.20:9001/api/v1/paletization/indicators/")
+  const service = new Service("http://localhost:3003/baselocal")
 
   async function parseData() {
     const data = await service.getData();

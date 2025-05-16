@@ -2,24 +2,19 @@ import { FC } from "react";
 import useCurrentTime from "../hooks/useCurrentTime";
 import { StateType } from "../types";
 import Databox from "./Databox";
+import Timebox from "./Timebox";
 
-const Dataline: FC<{ daily: StateType; monthly: StateType }> = ({
+const Dataline: FC<{ daily: StateType }> = ({
   daily,
-  monthly,
 }) => {
   const { currentDate, currentTime } = useCurrentTime();
 
   return (
-    <div className="w-full flex p-2 mt-0.5 justify-around gap-5">
-      <div>
-        <Databox
-          title="Día & Hora"
-          firstline={currentDate}
-          secondline={currentTime}
-          hierarchy="main"
-        />
+    <div className="w-full flex p-2 mt-0.5 justify-around gap-5 h-[28%]">
+      <div className="w-1/6">
+        <Timebox date={currentDate} time={currentTime}/>
       </div>
-      <div className="flex">
+      <div className="flex h-full w-4/6 justify-center items-center">
         <Databox
           title="Día"
           firstline="Volume"
@@ -42,32 +37,6 @@ const Dataline: FC<{ daily: StateType; monthly: StateType }> = ({
           title="Delta"
           firstline={daily.volume?.delta}
           secondline={daily.rate?.delta}
-          hierarchy="secondary"
-        />
-      </div>
-      <div className="flex">
-        <Databox
-          title="Mes"
-          firstline="Volume"
-          secondline="Rate"
-          hierarchy="main"
-        />
-        <Databox
-          title="Meta"
-          firstline={monthly.volume?.meta}
-          secondline={monthly.rate?.meta}
-          hierarchy="secondary"
-        />
-        <Databox
-          title="Real"
-          firstline={monthly.volume?.real}
-          secondline={monthly.rate?.real}
-          hierarchy="secondary"
-        />
-        <Databox
-          title="Delta"
-          firstline={monthly.volume?.delta}
-          secondline={monthly.rate?.delta}
           hierarchy="secondary"
         />
       </div>

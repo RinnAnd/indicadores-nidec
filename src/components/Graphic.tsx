@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { FC } from "react";
 import { Bar } from "react-chartjs-2";
 import { HourlyData } from "../types";
@@ -19,7 +20,8 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  annotationPlugin
+  annotationPlugin,
+  DataLabelsPlugin,
 );
 
 const hours = Array.from(
@@ -32,7 +34,7 @@ const Graphic: FC<{ hourlyData: HourlyData[], goal?: number }> = ({ hourlyData, 
     labels: hours,
     datasets: [
       {
-        label: "Hourly Values",
+        label: "",
         data: hours.map((_, hour) => {
           const entry = hourlyData.find((d) => d.hour === hour);
           return entry?.value || 0;
@@ -51,9 +53,15 @@ const Graphic: FC<{ hourlyData: HourlyData[], goal?: number }> = ({ hourlyData, 
       legend: {
         position: "top" as const,
       },
-      title: {
-        display: true,
-        text: "24-Hour Data",
+      datalabels: {
+        anchor: 'end' as const,
+        align: 'top' as const,
+        offset: 4,
+        font: {
+          size: 20,
+          weight: 'bold' as const
+        },
+        formatter: (value: number) => value > 0 ? value.toString() : null
       },
       annotation: {
         annotations: [
@@ -92,7 +100,7 @@ const Graphic: FC<{ hourlyData: HourlyData[], goal?: number }> = ({ hourlyData, 
   };
 
   return (
-    <div className="w-full h-[70%] flex justify-center items-center p-10">
+    <div className="w-full h-[60%] flex justify-center items-center px-10">
       <Bar options={options} data={data} className="w-full h-full" />
     </div>
   );

@@ -16,13 +16,13 @@ const Databox: FC<DataboxProps> = ({
   return (
     <div
       className={`${
-        hierarchy == "main" ? "w-[15rem]" : "w-[11rem]"
-      } flex flex-col rounded-md h-[11rem] border p-7 text-2xl font-extrabold border-slate-200`}
+        hierarchy == "main" ? "w-2/5" : "w-1/5"
+      } flex flex-col rounded-md h-full border p-7 text-5xl font-extrabold border-slate-200`}
     >
       <div className="text-gray-400 w-full">
         {title}
       </div>
-      <div className="flex flex-col justify-around h-full">
+      <div className="flex flex-col justify-evenly h-full text-6xl">
         <span
           className={`${
             title == "Delta" && Number(firstline) < 0
