@@ -20,7 +20,7 @@ const Header: FC = () => {
         <h1 className="text-white font-bold text-3xl">PRE ENSAMBLE ES</h1>
       </div>
       <div className="flex items-center w-1/3 justify-end">
-        <div className="w-[70%] flex gap-4 text-white text-5xl">
+        <div className="w-[70%] flex gap-4 text-white text-3xl font-semibold">
           <h1>{currentDate}</h1>
           <h1>-</h1>
           <h1>{currentTime}</h1>
