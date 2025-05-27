@@ -12,14 +12,22 @@ const useValueSetter = () => {
         rate: parsedData.diario.rate,
         volume: parsedData.diario.volume,
       },
-      monthly: {
-        rate: parsedData.mensual.rate,
-        volume: parsedData.mensual.volume,
-      },
       hourly: parsedData.rate_hora.map((item: any) => ({
         hour: item.hora,
         value: item.rate,
       })),
+      shift_1: {
+        rate: parsedData.turno1.rate,
+        volume: parsedData.turno1.volume,
+      },
+      shift_2: {
+        rate: parsedData.turno2.rate,
+        volume: parsedData.turno2.volume,
+      },
+      shift_3: {
+        rate: parsedData.turno3.rate,
+        volume: parsedData.turno3.volume,
+      },
     };
   }
 

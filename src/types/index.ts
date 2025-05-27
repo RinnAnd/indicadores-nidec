@@ -19,10 +19,18 @@ export type asyncFunc = () => Promise<{
     rate: any;
     volume: any;
   };
-  monthly: {
+  shift_1: {
     rate: any;
     volume: any;
-  };
+  }
+  shift_2: {
+    rate: any;
+    volume: any;
+  }
+  shift_3: {
+    rate: any;
+    volume: any;
+  }
   hourly: any;
 }>;
 
